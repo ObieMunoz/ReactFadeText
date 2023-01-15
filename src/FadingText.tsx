@@ -12,6 +12,7 @@ const FadingText: React.FC<Props> = ({ text }) => {
   const segments = [];
   const words = text.match(/[^\s]{1,29}(?:\s|$)/g);
 
+  if (!words) return <div></div>;
   for (const element of words) {
     const word = element;
     if (currentSegmentLength + word.length <= MAX_CHARS_PER_SEGMENT) {
