@@ -16,12 +16,12 @@ const FadingText = ({ text }) => {
       },
       { rootMargin: "-300px" }
     );
-    elementsRef.forEach((elementRef) => {
+    elementsRef.forEach((elementRef: { current: Element }) => {
       if (elementRef.current) observer.observe(elementRef.current);
     });
 
     return () => {
-      elementsRef.forEach((elementRef) => {
+      elementsRef.forEach((elementRef: { current: Element }) => {
         if (elementRef.current) observer.unobserve(elementRef.current);
       });
     };
@@ -29,11 +29,17 @@ const FadingText = ({ text }) => {
 
   return (
     <div className="bg-black">
-      {text.split(/(?<=,)/g).map((substring, index) => (
-        <p key={index} className="initial-hidden text" ref={elementsRef[index]}>
-          {substring.trim()}
-        </p>
-      ))}
+      {text
+        .split(/(?<=,)/g)
+        .map((substring: string, index: React.Key | null | undefined) => (
+          <p
+            key={index}
+            className="initial-hidden text"
+            ref={elementsRef[index]}
+          >
+            {substring.trim()}
+          </p>
+        ))}
     </div>
   );
 };

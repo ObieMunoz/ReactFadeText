@@ -1,7 +1,7 @@
 import FadingText from "./FadingText";
 
 function App() {
-  const text =
+  const text: string =
     "Packaging, websites, microsites, fulfillment integration, brand, catalogs, shipping boxes, direct mail, email campaigns, copywriting, photoshoots, art direction, delivery truck design, whatever it takes to help the Cowgirls sell their cheese.";
 
   return (
