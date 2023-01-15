@@ -18,7 +18,7 @@ const FadingTextSegment: React.FC<Props> = ({ text }) => {
           }
         });
       },
-      { rootMargin: "-300px" }
+      { rootMargin: "-175px" }
     );
 
     if (elementRef.current) observer.observe(elementRef.current);
