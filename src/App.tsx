@@ -7,7 +7,16 @@ function App() {
   return (
     <div className="app">
       <div className="spacer">
-        <h1 style={{ position: "sticky", top: 0 }}>Please scroll down.</h1>
+        <h1 style={{ position: "sticky", top: 0 }}>
+          Please scroll down. View this code at:{" "}
+          <a
+            href="https://www.github.com/obiemunoz/ReactFadeText"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </h1>
       </div>
       <FadingText text={text} />
       <div className="spacer"></div>
