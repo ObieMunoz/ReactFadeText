@@ -1,0 +1,47 @@
+.section {
+  height: 100vh;
+  width: 100vw;
+}
+
+.text {
+  font-size: 2em;
+  color: white;
+}
+
+p {
+  margin: 0;
+  padding-left: 20px;
+  font-weight: 700;
+}
+
+.initial-hidden {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.visible {
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .text {
+    font-size: 3em;
+  }
+}
+
+@media only screen and (min-width: 1028px) {
+  .text {
+    font-size: 4em;
+  }
+}
+
+.spacer {
+  height: 50vh;
+}
+
+.bg-black {
+  background-color: black;
+  padding-top: 10em;
+  padding-bottom: 10em;
+}
