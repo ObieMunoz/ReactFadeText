@@ -1,43 +1,34 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
+import FadingTextSegment from "./FadingTextSegment";
 
 interface Props {
   text: string;
 }
 
 const FadingText: React.FC<Props> = ({ text }) => {
-  const elementsRef = text.split(/(?<=,)/g).map(() => useRef<null>(null));
+  const MAX_CHARS_PER_SEGMENT = 30;
+  let currentSegment = "";
+  let currentSegmentLength = 0;
+  const segments = [];
+  const words = text.match(/[^\s]{1,29}(?:\s|$)/g);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove("initial-hidden");
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: "-300px" }
-    );
-
-    elementsRef.forEach((elementRef: React.MutableRefObject<null>) => {
-      if (elementRef.current) observer.observe(elementRef.current);
-    });
-
-    return () => {
-      elementsRef.forEach((elementRef: React.MutableRefObject<null>) => {
-        if (elementRef.current) observer.unobserve(elementRef.current);
-      });
-    };
-  }, [elementsRef]);
+  for (const element of words) {
+    const word = element;
+    if (currentSegmentLength + word.length <= MAX_CHARS_PER_SEGMENT) {
+      currentSegment += word + " ";
+      currentSegmentLength += word.length + 1;
+    } else {
+      segments.push(currentSegment);
+      currentSegment = word;
+      currentSegmentLength = word.length;
+    }
+  }
+  segments.push(currentSegment);
 
   return (
     <div className="bg-black">
-      {text.split(/(?<=,)/g).map((substring: string, index: number) => (
-        <p key={index} className="initial-hidden text" ref={elementsRef[index]}>
-          {substring.trim()}
-        </p>
+      {segments.map((segment: string, index: number) => (
+        <FadingTextSegment key={index} text={segment} />
       ))}
     </div>
   );
