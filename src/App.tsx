@@ -19,7 +19,6 @@ function App() {
         </h1>
       </div>
       <FadingText text={text} />
-      <div className="spacer"></div>
     </div>
   );
 }
