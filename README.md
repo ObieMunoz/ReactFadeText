@@ -2,4 +2,4 @@
 
 A simple React component that fades text in as the user scrolls down.
 
-Preview: https://react-fade-text.vercel.app/
+Archived 2/21/2023
